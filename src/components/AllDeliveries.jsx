@@ -5,6 +5,7 @@ import { Switch } from '@headlessui/react'
 
 import { collection, deleteDoc, doc, getDoc, onSnapshot, orderBy, query, updateDoc } from "firebase/firestore";
 import { db } from '../firebase';
+import { replaceVendorWithLogo } from '../utils/replaceVendorWithLogo';
 
 
 
@@ -61,21 +62,21 @@ const AllDeliveries = () => {
                 <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                         <table className="min-w-full divide-y divide-gray-300">
-                            <thead className="bg-gray-50">
+                            <thead className="bg-gray-50 text-center">
                                 <tr>
-                                    <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                    <th scope="col" className="py-3.5 pl-4 pr-3  text-sm font-semibold text-gray-900 sm:pl-6">
                                         Vendor
                                     </th>
-                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                    <th scope="col" className="px-3 py-3.5 text-sm font-semibold text-gray-900">
                                         ETA
                                     </th>
-                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                    <th scope="col" className="px-3 py-3.5  text-sm font-semibold text-gray-900">
                                         Ticket #
                                     </th>
-                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                    <th scope="col" className="px-3 py-3.5  text-sm font-semibold text-gray-900">
                                         Comments
                                     </th>
-                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                    <th scope="col" className="px-3 py-3.5  text-sm font-semibold text-gray-900">
                                         Status
                                     </th>
                                     <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
@@ -84,33 +85,33 @@ const AllDeliveries = () => {
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-gray-200 bg-white">
+                            <tbody className="divide-y divide-gray-200 bg-white text-center">
                                 {allDeliveries.map((delivery) => {
 
                                     const { vendor, eta, ticket, comments, status } = delivery.data;
                                     return (
 
                                         <tr key={delivery.id}>
-                                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
-                                                <div className="flex items-center">
-                                                    {vendor}
-                                                </div>
+                                            <td className="whitespace-nowrap pl-4 py-2 text-gray-500">
+                                                
+                                                {replaceVendorWithLogo(vendor)}
+                                                
                                             </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                            <td className="whitespace-nowrap pl-4 py-2 text-gray-500">
                                                 <div className="text-gray-900">{eta}</div>
 
                                             </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                            <td className="whitespace-nowrap pl-4 py-2 text-gray-500">
 
                                                 {ticket}
 
                                             </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                            <td className="whitespace-nowrap pl-4 py-2 text-gray-500">
 
                                                 {comments}
 
                                             </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                            <td className="whitespace-nowrap pl-4 py-2 text-gray-500">
                                                 <Switch
 
                                                     checked={status}
