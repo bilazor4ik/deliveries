@@ -5,6 +5,7 @@ import { Switch } from '@headlessui/react'
 
 import { collection, deleteDoc, doc, getDoc, onSnapshot, orderBy, query, updateDoc } from "firebase/firestore";
 import { db } from '../firebase';
+import { replaceVendorWithLogo } from '../utils/replaceVendorWithLogo';
 
 
 
@@ -93,7 +94,7 @@ const AllDeliveries = () => {
                                         <tr key={delivery.id}>
                                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                                                 <div className="flex items-center">
-                                                    {vendor}
+                                                {replaceVendorWithLogo(vendor)}
                                                 </div>
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
