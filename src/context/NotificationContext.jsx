@@ -4,8 +4,9 @@ export const NotificationContext = createContext()
 
 export const NotificationContextProvider = ({children}) =>{
     const [notificationCount, setNotificationCount] = useState(0)
+    const [showNotification, setShowNotification] = useState(true)
     return(
-        <NotificationContext.Provider value={{notificationCount, setNotificationCount}}>
+        <NotificationContext.Provider value={{notificationCount, setNotificationCount, showNotification, setShowNotification}}>
             {children}
         </NotificationContext.Provider>
     )

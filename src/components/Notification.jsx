@@ -1,11 +1,12 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from 'react'
+import { Fragment, useContext, useState } from 'react'
 import { Transition } from '@headlessui/react'
 import {BsInfoLg} from 'react-icons/bs'
 import {AiOutlineClose} from 'react-icons/ai'
+import { NotificationContext } from '../context/NotificationContext'
 export default function Notification() {
-  const [show, setShow] = useState(true)
-
+ 
+const {showNotification, setShowNotification} = useContext(NotificationContext)
   return (
     <>
       {/* Global notification live region, render this permanently at the end of the document */}
@@ -16,7 +17,7 @@ export default function Notification() {
         <div className="flex w-full flex-col items-center space-y-4 sm:items-end">
           {/* Notification panel, dynamically insert this into the live region when it needs to be displayed */}
           <Transition
-            show={show}
+            show={showNotification}
             as={Fragment}
             enter="transform ease-out duration-300 transition"
             enterFrom="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
@@ -47,7 +48,7 @@ export default function Notification() {
                         type="button"
                         className="rounded-md bg-white text-sm font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-0   dark:bg-slate-600 dark:text-gray-200 dark:hover:text-orange-400"
                         onClick={() => {
-                            setShow(false)
+                            setShowNotification(false)
                           }}
                       >
                         Dismiss
@@ -59,7 +60,7 @@ export default function Notification() {
                       type="button"
                       className="inline-flex rounded-md  text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                       onClick={() => {
-                        setShow(false)
+                        setShowNotification(false)
                       }}
                     >
                       <span className="sr-only">Close</span>

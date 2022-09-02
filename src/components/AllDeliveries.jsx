@@ -25,14 +25,14 @@ const AllDeliveries = () => {
 
     useEffect(() => {
         getDeliveries()
-       console.log( checkIfDeliveryDateToday('2022-08-26'))
+       
     }, [])
 
     const updateStatus = async (id) => {
         const deliveryRef = doc(db, 'deliveries', id)
         const deliveryData = await getDoc(deliveryRef)
         const deliveryStatus = deliveryData.data().status
-        console.log(deliveryStatus)
+        
         try {
             await updateDoc(deliveryRef, {
 

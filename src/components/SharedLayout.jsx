@@ -36,11 +36,12 @@ export default function Example() {
                 <button
                 type="button"
                 className="inline-flex items-center rounded-md border border-transparent bg-gray-500 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-0"
-                onClick={() => setDarkMode(!darkMode)}
+                onClick={() => setDarkMode({status: !darkMode.status})}
             >
                 <BsCircleHalf className="-ml-0.5 mr-2 h-4 w-4" aria-hidden="true" />
-                {darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+                {darkMode.status ? 'Switch to light mode' : 'Switch to dark mode'}
             </button>
+            
                 </div>
                 
                 
