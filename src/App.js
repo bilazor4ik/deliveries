@@ -8,16 +8,18 @@ import Home from "./pages/Home";
 function App() {
   return (
 
+    <div className=" min-h-screen bg-gray-100 dark:bg-black">
 
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route index element={<Home />} />
-        <Route path="deliveries/:deliveryId" element={<DeliveryDetails />} />
-        <Route path="deliveries/new" element={<AddDelivery/>}/>
-      </Route>
-      <Route path="*" element={<ErrorPage />} />
-    </Routes>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="deliveries/:deliveryId" element={<DeliveryDetails />} />
+          <Route path="deliveries/new" element={<AddDelivery />} />
+        </Route>
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
 
+    </div>
   );
 }
 

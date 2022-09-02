@@ -8,7 +8,7 @@ export default function Home() {
 
     
     return (
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="px-4 sm:px-6 lg:px-8 w-1/2 mx-auto">
             <div className="sm:flex sm:items-center">
                 <div className="sm:flex-auto">
                     <h1 className="text-xl font-semibold text-gray-900">Deliveries</h1>
@@ -32,6 +32,7 @@ export default function Home() {
             {/* Display list of All Deliveries*/}
           <AllDeliveries/>
 
+        
           
         </div>
     )

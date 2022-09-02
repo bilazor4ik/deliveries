@@ -11,6 +11,7 @@ function classNames(...classes) {
 
 const AllDeliveries = () => {
     const [allDeliveries, setAllDeliveries] = useState([])
+    const [beingDeleted, setBeingDeleted] = useState(false)
 
     const getDeliveries = async () => {
         const q = query(collection(db, 'deliveries'), orderBy("eta", "asc"))
@@ -45,11 +46,18 @@ const AllDeliveries = () => {
 
     const handleDelete = async (id) => {
         const deliveryRef = doc(db, 'deliveries', id)
-        try {
+        
+        setBeingDeleted(true)
+        setTimeout(()=>{
+            setBeingDeleted(false)
+        },
+        1500)
+      {/*   try {
             await deleteDoc(deliveryRef)
         } catch (err) {
             alert(err)
         }
+        */}
     }
 
     return (
@@ -81,13 +89,13 @@ const AllDeliveries = () => {
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-gray-500 bg-white text-center">
+                            <tbody className="divide-y divide-gray-300 bg-white text-center">
                                 {allDeliveries.map((delivery) => {
 
                                     const { vendor, eta, ticket, comments, status } = delivery.data;
                                     return (
 
-                                        <tr key={delivery.id} className={status? "bg-green-100 " : null}>
+                                        <tr key={delivery.id} className={beingDeleted ? 'bg-red-300' : null}>
                                             <td className="whitespace-nowrap pl-4 py-2 text-gray-500">
 
                                                 {replaceVendorWithLogo(vendor)}
