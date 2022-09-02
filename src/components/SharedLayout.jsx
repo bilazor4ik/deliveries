@@ -6,6 +6,7 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Outlet } from 'react-router-dom'
 import { BsCircleHalf } from 'react-icons/bs'
 import { Link } from 'react-router-dom';
+import { NotificationContext } from '../context/NotificationContext';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -13,6 +14,7 @@ function classNames(...classes) {
 
 export default function Example() {
   const {darkMode, setDarkMode} = useContext(DarkModeContext)
+  const {showNotification, setShowNotification} = useContext(NotificationContext)
   return (
     <>
       <Disclosure as="nav" className="bg-gray-200 dark:bg-gray-700">
@@ -65,7 +67,8 @@ export default function Example() {
                 <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
                   <button
                     type="button"
-                    className="rounded-full  p-1 text-gray-700 dark:text-gray-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    className="rounded-full  p-1 text-gray-700 dark:text-gray-200 dark:hover:text-gray-100 hover:text-white focus:ring-0 "
+                      onClick={()=>setShowNotification(!showNotification)}
                   >
                     <span className="sr-only">View notifications</span>
                     <BellIcon className="h-6 w-6" aria-hidden="true" />
