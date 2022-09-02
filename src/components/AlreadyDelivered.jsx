@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { Switch } from '@headlessui/react'
-import { collection, deleteDoc, doc, getDoc, onSnapshot, orderBy, query, updateDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDoc, onSnapshot, orderBy, query, updateDoc, where } from "firebase/firestore";
 import { db } from '../firebase';
 import { replaceVendorWithLogo } from '../utils/replaceVendorWithLogo';
 import { checkIfDeliveryDateToday } from '../utils/checkIfDeliveryDateToday';
@@ -9,12 +9,13 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-const AllDeliveries = () => {
+const AlreadyDelivered = () => {
     const [allDeliveries, setAllDeliveries] = useState([])
 
-    const getDeliveries = async () => {
-        const q = query(collection(db, 'deliveries'), orderBy("eta", "asc"))
+    const getAlreadyDelivered = async () => {
+        const q = query(collection(db, 'deliveries'), where("status","=" ,true))
         onSnapshot(q, (querySnapshot) => {
+            
             setAllDeliveries(querySnapshot.docs.map(doc => ({
                 id: doc.id,
                 data: doc.data()
@@ -23,25 +24,11 @@ const AllDeliveries = () => {
     }
 
     useEffect(() => {
-        getDeliveries()
-       console.log( checkIfDeliveryDateToday('2022-08-26'))
+        getAlreadyDelivered()
+       
     }, [])
 
-    const updateStatus = async (id) => {
-        const deliveryRef = doc(db, 'deliveries', id)
-        const deliveryData = await getDoc(deliveryRef)
-        const deliveryStatus = deliveryData.data().status
-        console.log(deliveryStatus)
-        try {
-            await updateDoc(deliveryRef, {
-
-                status: !deliveryStatus
-            })
-
-        } catch (err) {
-            alert(err)
-        }
-    }
+    
 
     const handleDelete = async (id) => {
         const deliveryRef = doc(db, 'deliveries', id)
@@ -113,7 +100,7 @@ const AllDeliveries = () => {
                                                 <Switch
 
                                                     checked={status}
-                                                    onChange={() => updateStatus(delivery.id)}
+                                                    
                                                     className={classNames(
                                                         status ? 'bg-indigo-600' : 'bg-gray-200',
                                                         'relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
@@ -180,4 +167,4 @@ const AllDeliveries = () => {
     )
 }
 
-export default AllDeliveries
+export default AlreadyDelivered

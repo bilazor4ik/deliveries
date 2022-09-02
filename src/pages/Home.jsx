@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import AllDeliveries from '../components/AllDeliveries';
+import AlreadyDelivered from '../components/AlreadyDelivered';
 
 
 
@@ -27,7 +28,11 @@ export default function Home() {
                     </Link>
                 </div>
             </div>
+
+            {/* Display list of All Deliveries*/}
           <AllDeliveries/>
+
+          
         </div>
     )
 }

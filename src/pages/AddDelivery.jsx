@@ -61,6 +61,7 @@ export default function AddDelivery() {
                     onChange={(e)=>setDelivery({...delivery, vendor: e.target.value})}
                     autoComplete="country-name"
                     className="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                    required
                   >
                     <option></option>
                     <option>FedEx</option>
@@ -84,6 +85,7 @@ export default function AddDelivery() {
                     value={delivery.eta}
                     onChange={(e)=>setDelivery({...delivery, eta: e.target.value})}
                     className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                    required
                   />
                 </div>
               </div>
@@ -100,6 +102,7 @@ export default function AddDelivery() {
                     value={delivery.ticket}
                     onChange={(e)=>setDelivery({...delivery, ticket: e.target.value})}
                     className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                    required
                     />
                 </div>
               </div>
@@ -116,6 +119,7 @@ export default function AddDelivery() {
                   className="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md"
                   value={delivery.comments}
                   onChange={(e)=>setDelivery({...delivery, comments: e.target.value})}
+                  required
                 />
                 <p className="mt-2 text-sm text-gray-500">Please write what to expect in package</p>
               </div>
