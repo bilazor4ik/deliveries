@@ -46,18 +46,13 @@ const AllDeliveries = () => {
 
     const handleDelete = async (id) => {
         const deliveryRef = doc(db, 'deliveries', id)
-        
-        setBeingDeleted(true)
-        setTimeout(()=>{
-            setBeingDeleted(false)
-        },
-        1500)
-      {/*   try {
+      
+        try {
             await deleteDoc(deliveryRef)
         } catch (err) {
             alert(err)
         }
-        */}
+        
     }
 
     return (
@@ -66,21 +61,21 @@ const AllDeliveries = () => {
                 <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                         <table className="min-w-full divide-y divide-gray-300">
-                            <thead className="bg-gray-50 text-center">
+                            <thead className="bg-gray-500 text-white text-center dark:bg-gray-300 dark:text-gray-900">
                                 <tr>
-                                    <th scope="col" className="py-3.5 pl-4 pr-3  text-sm font-semibold text-gray-900 sm:pl-6">
+                                    <th scope="col" className="py-3.5 pl-4 pr-3  text-sm font-semibold  sm:pl-6">
                                         Vendor
                                     </th>
-                                    <th scope="col" className="px-3 py-3.5 text-sm font-semibold text-gray-900">
+                                    <th scope="col" className="px-3 py-3.5 text-sm font-semibold ">
                                         ETA
                                     </th>
-                                    <th scope="col" className="px-3 py-3.5  text-sm font-semibold text-gray-900">
+                                    <th scope="col" className="px-3 py-3.5  text-sm font-semibold ">
                                         Ticket #
                                     </th>
-                                    <th scope="col" className="px-3 py-3.5  text-sm font-semibold text-gray-900">
+                                    <th scope="col" className="px-3 py-3.5  text-sm font-semibold ">
                                         Comments
                                     </th>
-                                    <th scope="col" className="px-3 py-3.5  text-sm font-semibold text-gray-900">
+                                    <th scope="col" className="px-3 py-3.5  text-sm font-semibold ">
                                         Status
                                     </th>
                                     <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
@@ -89,42 +84,42 @@ const AllDeliveries = () => {
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-gray-300 bg-white text-center">
+                            <tbody className="divide-y divide-gray-100 bg-gray-200 dark:bg-gray-200 dark:text-gray-800 text-center">
                                 {allDeliveries.map((delivery) => {
 
                                     const { vendor, eta, ticket, comments, status } = delivery.data;
                                     return (
 
                                         <tr key={delivery.id} className={beingDeleted ? 'bg-red-300' : null}>
-                                            <td className="whitespace-nowrap pl-4 py-2 text-gray-500">
+                                            <td className="whitespace-nowrap pl-4 py-2 ">
 
                                                 {replaceVendorWithLogo(vendor)}
 
                                             </td>
-                                            <td className="whitespace-nowrap pl-4 py-2 text-gray-500">
+                                            <td className="whitespace-nowrap pl-4 py-2 ">
                                                 <div className="text-gray-900">
                                                     {eta}
                                                     </div>
 
                                             </td>
-                                            <td className="whitespace-nowrap pl-4 py-2 text-gray-500">
+                                            <td className="whitespace-nowrap pl-4 py-2 ">
 
                                                 {ticket}
 
                                             </td>
-                                            <td className="whitespace-nowrap pl-4 py-2 text-gray-500">
+                                            <td className="whitespace-nowrap pl-4 py-2 ">
 
                                                 {comments}
 
                                             </td>
-                                            <td className="whitespace-nowrap pl-4 py-2 text-gray-500">
+                                            <td className="whitespace-nowrap pl-4 py-2 ">
                                                 <Switch
 
                                                     checked={status}
                                                     onChange={() => updateStatus(delivery.id)}
                                                     className={classNames(
-                                                        status ? 'bg-indigo-600' : 'bg-gray-200',
-                                                        'relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                                                        status ? 'bg-orange-500' : 'bg-gray-500',
+                                                        'relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
                                                     )}
                                                 >
 
@@ -158,7 +153,7 @@ const AllDeliveries = () => {
                                                             )}
                                                             aria-hidden="true"
                                                         >
-                                                            <svg className="h-3 w-3 text-indigo-600" fill="currentColor" viewBox="0 0 12 12">
+                                                            <svg className="h-3 w-3 text-orange-400" fill="currentColor" viewBox="0 0 12 12">
                                                                 <path d="M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z" />
                                                             </svg>
                                                         </span>
