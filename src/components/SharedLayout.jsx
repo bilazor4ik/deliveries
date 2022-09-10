@@ -1,8 +1,6 @@
-import { Fragment } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { useContext } from "react";
 import { DarkModeContext } from "../context/DarkMode";
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
+import { BellIcon } from "@heroicons/react/outline";
 import { Outlet } from "react-router-dom";
 import { BsCircleHalf } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -14,8 +12,9 @@ function classNames(...classes) {
 
 export default function Example() {
   const { darkMode, setDarkMode } = useContext(DarkModeContext);
-  const { showNotification, setShowNotification } =
+  const { showNotification, setShowNotification,notificationCount } =
     useContext(NotificationContext);
+    
   return (
     <>
       <div className="flex flex-col items-center  px-16  text-white bg-gray-200 dark:bg-gray-700 sm:flex-row sm:justify-between">
@@ -47,11 +46,15 @@ export default function Example() {
           </Link>
           <button
             type="button"
-            className="rounded-full  p-1 text-gray-700 dark:text-gray-200 dark:hover:text-gray-100 hover:text-white focus:ring-0 "
+            className={classNames(
+              notificationCount > 0 ? 'animate-bounce' : null,
+                "rounded-full relative p-1 text-gray-700 dark:text-gray-200 dark:hover:text-gray-100 hover:text-gray-900 focus:ring-0 "
+            )}
             onClick={() => setShowNotification(!showNotification)}
           >
             <span className="sr-only">View notifications</span>
             <BellIcon className="h-6 w-6" aria-hidden="true" />
+            <span className="absolute top-0 right-0 block text-sm">{notificationCount}</span>
           </button>
         </div>
       </div>

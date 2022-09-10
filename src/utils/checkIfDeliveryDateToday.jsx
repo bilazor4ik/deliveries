@@ -1,20 +1,12 @@
+import dayjs from "dayjs"
+
 export const checkIfDeliveryDateToday = (eta) => {
 
-    const current = new Date()
-    const reformattedCurrent = new Date( current.getTime() - current.getTimezoneOffset() * -60000 ) 
-    
-    const todaysMonth = current.getMonth()+1;
-    const todaysDay = current.getDate();
-    const todaysYear = current.getFullYear();
+   const deliveryEta = dayjs(eta)
+   const today = dayjs()
 
-    const formattedEta = new Date()
-    const reformattedEta = new Date( formattedEta.getTime() - formattedEta.getTimezoneOffset() * -60000 ) 
-    const etaMonth = reformattedEta.getMonth()+1;
-    const etaDay = reformattedEta.getDate();
-    const etaYear = reformattedEta.getFullYear()
-
+   return(deliveryEta.$M === today.$M && deliveryEta.$Y === today.$Y && deliveryEta.$D === today.$D)
     
-    return (todaysMonth === etaMonth && todaysDay === etaDay && todaysYear === etaYear)
 
 
 

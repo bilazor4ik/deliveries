@@ -10,7 +10,7 @@ export default function Home() {
       {darkMode.status ? (
         <img src={cat} className="w-48 h-auto absolute hidden xl:block" />
       ) : null}
-      <div className="w-full overflow-hidden mx-4 xl:w-3/4 xl:mx-auto">
+      <div className="w-full overflow-hidden mx-4 xl:w-3/4 xl:mx-auto 2xl:w-1/2">
         
             <AllDeliveries />
          
